@@ -7,8 +7,8 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   const config = new DocumentBuilder()
-    .setTitle('Fur Fight Club — Authentication service')
-    .setDescription('Swagger of the authentication service of Fur Fight Club')
+    .setTitle('Fur Fight Club — Notifications service')
+    .setDescription('Swagger of the notification service of Fur Fight Club')
     .setVersion('1.0')
     .addBearerAuth({
       type: "http",
