@@ -1,8 +1,9 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Post, UseGuards } from '@nestjs/common';
 import { EmailsService } from './emails.service';
 import { ApiBody, ApiTags } from '@nestjs/swagger';
 import { SendEmailApiBody, SendEmailDto } from './emails.schema';
 import { ZodValidationPipe } from 'nestjs-zod';
+import { ServiceGuard } from 'src/auth/auth-service.guard';
 
 @Controller('emails')
 @ApiTags('Emails controller')
@@ -11,6 +12,7 @@ export class EmailsController {
   }
 
   @Post("send-account-confirmation")
+  @UseGuards(ServiceGuard)
   @ApiBody({
     description: "Send account confirmation email",
     type: SendEmailApiBody,
@@ -23,6 +25,7 @@ export class EmailsController {
   }
 
   @Post("send-password-reset")
+  @UseGuards(ServiceGuard)
   @ApiBody({
     description: "Send password reset email",
     type: SendEmailApiBody,
