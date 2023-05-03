@@ -8,4 +8,6 @@ export default () => ({
   ffc_main_url: "http://localhost:4000" ?? process.env.FFC_MAIN_URL,
   ffc_notifications_url: "http://localhost:4003" ?? process.env.FFC_NOTIFICATIONS_URL,
   ffc_payments_url: "http://localhost:4004" ?? process.env.FFC_PAYMENTS_URL,
+  sib_api_key: process.env.SENDINBLUE_API_KEY ?? null,
+  frontend_url: "http://localhost:3000" ?? process.env.FRONTEND_URL,
 });
