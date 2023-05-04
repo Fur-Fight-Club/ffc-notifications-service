@@ -17,7 +17,8 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "start:docker": "npm rebuild bcrypt --build-from-source && npm run start:dev"
   },
   "dependencies": {
     "@nestjs/common": "^9.0.0",
@@ -28,11 +29,13 @@
     "@nestjs/swagger": "^6.3.0",
     "@prisma/client": "^4.13.0",
     "bcrypt": "^5.1.0",
-    "ffc-prisma-package": "^1.4.3",
+    "ffc-prisma-package": "^2.0.0",
     "fs": "^0.0.1-security",
+    "nestjs-zod": "^2.3.2",
     "node-fetch": "^2.6.9",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.2.0",
+    "sib-api-v3-sdk": "^7.1.4",
     "uuidv4": "^6.2.13"
   },
   "devDependencies": {
