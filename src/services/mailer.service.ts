@@ -29,7 +29,7 @@ export class MailerService {
       sender: this.sender,
       params: {
         name,
-        confirmation_url: `${this.config.get<string>("frontend_url")}/confirm-account?token=${email_token}`,
+        confirmation_url: `${this.config.get<string>("frontend_url")}/account/confirm?token=${email_token}`,
       },
     };
     smtpEmailParams = { ...smtpEmailParams, ...params };
@@ -51,7 +51,7 @@ export class MailerService {
       sender: this.sender,
       params: {
         name,
-        reset_url: `${this.config.get<string>("frontend_url")}/reset-password?token=${email_token}`,
+        reset_url: `${this.config.get<string>("frontend_url")}/account/reset-password?token=${email_token}`,
       },
     };
     smtpEmailParams = { ...smtpEmailParams, ...params };
