@@ -25,7 +25,7 @@ export class MatchMessageController {
   constructor(private readonly matchMessageService: MatchMessageService) {}
 
   @Post()
-  //@UseGuards(ServiceGuard)
+  @UseGuards(ServiceGuard)
   @ApiBody({
     description: "Create a new match message",
     type: CreateMessageApiBody,
