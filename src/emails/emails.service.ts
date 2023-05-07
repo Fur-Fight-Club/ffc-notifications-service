@@ -29,7 +29,7 @@ export class EmailsService {
     email: string,
     name: string,
     price: number,
-    invoice_id: number,
+    invoice_id: string,
     attachment: string
   ): Promise<boolean> {
     return await this.mailerService.sendInvoice(

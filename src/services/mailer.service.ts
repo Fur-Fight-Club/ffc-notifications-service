@@ -81,7 +81,7 @@ export class MailerService {
     email: string,
     name: string,
     price: number,
-    invoice_id: number,
+    invoice_id: string,
     attachment: string
   ): Promise<boolean> {
     const { data: pdf } = await axios({
