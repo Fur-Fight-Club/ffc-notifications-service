@@ -3,7 +3,7 @@ import { CreateMessageDto, UpdateMessageDto } from "./match-message.schema";
 import { PrismaService } from "src/services/prisma.service";
 import { MatchMessage } from "ffc-prisma-package/dist/client";
 import { MatchMessageGateway } from "./match-message.gateway";
-import { handleMatchMessageError } from "src/errors/match-message.errors";
+import { handleMatchMessageError } from "src/utils/errors/match-message.errors";
 
 @Injectable()
 export class MatchMessageService {
