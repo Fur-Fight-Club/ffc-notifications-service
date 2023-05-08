@@ -115,7 +115,8 @@ export class MailerService {
     totalWithdraw: number,
     feesPercentage: string,
     fees: number,
-    amount: number
+    amount: number,
+    lastDigits: string
   ) {
     let smtpEmailParams = new SibApiV3Sdk.SendSmtpEmail();
     const params = {
@@ -131,6 +132,7 @@ export class MailerService {
         feesPercentage,
         fees: fees.toFixed(2),
         amount: amount.toFixed(2),
+        lastDigits,
       },
     };
     smtpEmailParams = { ...smtpEmailParams, ...params };

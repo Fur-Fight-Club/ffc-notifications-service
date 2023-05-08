@@ -95,6 +95,7 @@ export class EmailsController {
       feesPercentage,
       fees,
       amount,
+      lastDigits,
     } = withdrawInvoiceDto;
     const emailSent = this.emailsService.sendWithdrawInvoice(
       email,
@@ -104,7 +105,8 @@ export class EmailsController {
       totalWithdraw,
       feesPercentage,
       fees,
-      amount
+      amount,
+      lastDigits
     );
     return { emailSent };
   }

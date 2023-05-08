@@ -1,4 +1,5 @@
 import { Injectable } from "@nestjs/common";
+import { last } from "rxjs";
 import { MailerService } from "src/services/mailer.service";
 
 @Injectable()
@@ -48,7 +49,8 @@ export class EmailsService {
     totalWithdraw: number,
     feesPercentage: string,
     fees: number,
-    amount: number
+    amount: number,
+    lastDigits: string
   ) {
     this.mailerService.sendWithdrawInvoice(
       email,
@@ -58,7 +60,8 @@ export class EmailsService {
       totalWithdraw,
       feesPercentage,
       fees,
-      amount
+      amount,
+      lastDigits
     );
   }
 }

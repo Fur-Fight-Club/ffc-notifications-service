@@ -64,6 +64,7 @@ export const withdrawInvoice = z.object({
   feesPercentage: z.string(),
   fees: z.number(),
   amount: z.number(),
+  lastDigits: z.string().length(4),
 });
 
 export class WithdrawInvoiceDto extends createZodDto(withdrawInvoice) {
@@ -87,4 +88,7 @@ export class WithdrawInvoiceDto extends createZodDto(withdrawInvoice) {
 
   @ApiProperty({ type: "number" })
   amount: number;
+
+  @ApiProperty({ type: "string" })
+  lastDigits: string;
 }
