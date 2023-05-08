@@ -26,7 +26,12 @@ export class EmailsController {
     @Body(ZodValidationPipe) sendEmailDto: SendEmailDto
   ) {
     const { email, name, email_token } = sendEmailDto;
-    return this.emailsService.sendAccountConfirmation(email, name, email_token);
+    const emailSent = this.emailsService.sendAccountConfirmation(
+      email,
+      name,
+      email_token
+    );
+    return { emailSent };
   }
 
   @Post("send-password-reset")
@@ -36,7 +41,12 @@ export class EmailsController {
   })
   async sendPasswordReset(@Body(ZodValidationPipe) sendEmailDto: SendEmailDto) {
     const { email, name, email_token } = sendEmailDto;
-    return this.emailsService.sendPasswordReset(email, name, email_token);
+    const emailSent = this.emailsService.sendPasswordReset(
+      email,
+      name,
+      email_token
+    );
+    return { emailSent };
   }
 
   @Post("send-invoice")
@@ -53,13 +63,14 @@ export class EmailsController {
     @Body(ZodValidationPipe) sendInvoiceEmailDto: SendInvoiceEmailDto
   ) {
     const { email, name, price, invoice_id, attachment } = sendInvoiceEmailDto;
-    return this.emailsService.sendInvoice(
+    const emailSent = this.emailsService.sendInvoice(
       email,
       name,
       price,
       invoice_id,
       attachment
     );
+    return { emailSent };
   }
 
   @Post("send-withdraw-invoice")
@@ -85,7 +96,7 @@ export class EmailsController {
       fees,
       amount,
     } = withdrawInvoiceDto;
-    return this.emailsService.sendWithdrawInvoice(
+    const emailSent = this.emailsService.sendWithdrawInvoice(
       email,
       name,
       invoice_id,
@@ -95,5 +106,6 @@ export class EmailsController {
       fees,
       amount
     );
+    return { emailSent };
   }
 }
