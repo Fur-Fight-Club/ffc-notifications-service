@@ -6,17 +6,18 @@ import {
   SendEmailDto,
   SendInvoiceEmailApiBody,
   SendInvoiceEmailDto,
+  WithdrawInvoiceDto,
 } from "./emails.schema";
 import { ZodValidationPipe } from "nestjs-zod";
 import { ServiceGuard } from "src/auth/auth-service.guard";
 
 @Controller("emails")
 @ApiTags("Emails controller")
+@UseGuards(ServiceGuard)
 export class EmailsController {
   constructor(private readonly emailsService: EmailsService) {}
 
   @Post("send-account-confirmation")
-  @UseGuards(ServiceGuard)
   @ApiBody({
     description: "Send account confirmation email",
     type: SendEmailApiBody,
@@ -29,7 +30,6 @@ export class EmailsController {
   }
 
   @Post("send-password-reset")
-  @UseGuards(ServiceGuard)
   @ApiBody({
     description: "Send password reset email",
     type: SendEmailApiBody,
@@ -40,7 +40,6 @@ export class EmailsController {
   }
 
   @Post("send-invoice")
-  //@UseGuards(ServiceGuard)
   @ApiBody({
     description: "Send invoice email",
     type: SendInvoiceEmailApiBody,
@@ -60,6 +59,41 @@ export class EmailsController {
       price,
       invoice_id,
       attachment
+    );
+  }
+
+  @Post("send-withdraw-invoice")
+  @ApiBody({
+    description: "Send withdraw invoice email",
+    type: WithdrawInvoiceDto,
+  })
+  @ApiResponse({
+    status: 200,
+    description: "Email sent",
+    type: Boolean,
+  })
+  async sendWithdrawInvoice(
+    @Body(ZodValidationPipe) withdrawInvoiceDto: WithdrawInvoiceDto
+  ) {
+    const {
+      email,
+      name,
+      invoice_id,
+      invoice_url,
+      totalWithdraw,
+      feesPercentage,
+      fees,
+      amount,
+    } = withdrawInvoiceDto;
+    return this.emailsService.sendWithdrawInvoice(
+      email,
+      name,
+      invoice_id,
+      invoice_url,
+      totalWithdraw,
+      feesPercentage,
+      fees,
+      amount
     );
   }
 }

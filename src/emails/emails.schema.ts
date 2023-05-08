@@ -51,3 +51,40 @@ export class SendInvoiceEmailApiBody {
   @ApiProperty({ type: "string" })
   attachment: string;
 }
+
+/**
+ * WITHDRAW INVOICE
+ */
+export const withdrawInvoice = z.object({
+  email: z.string().email(),
+  name: z.string(),
+  invoice_id: z.string(),
+  invoice_url: z.string(),
+  totalWithdraw: z.number(),
+  feesPercentage: z.string(),
+  fees: z.number(),
+  amount: z.number(),
+});
+
+export class WithdrawInvoiceDto extends createZodDto(withdrawInvoice) {
+  @ApiProperty({ type: "string", format: "email" })
+  email: string;
+
+  @ApiProperty({ type: "string" })
+  name: string;
+
+  @ApiProperty({ type: "string" })
+  invoice_id: string;
+
+  @ApiProperty({ type: "number" })
+  totalWithdraw: number;
+
+  @ApiProperty({ type: "string" })
+  feesPercentage: string;
+
+  @ApiProperty({ type: "number" })
+  fees: number;
+
+  @ApiProperty({ type: "number" })
+  amount: number;
+}

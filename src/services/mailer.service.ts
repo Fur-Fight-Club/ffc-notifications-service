@@ -84,14 +84,6 @@ export class MailerService {
     invoice_id: string,
     attachment: string
   ): Promise<boolean> {
-    const { data: pdf } = await axios({
-      url: attachment,
-      responseType: "arraybuffer",
-      responseEncoding: "binary",
-      headers: {
-        "Content-Type": "application/pdf",
-      },
-    });
     let smtpEmailParams = new SibApiV3Sdk.SendSmtpEmail();
     const params = {
       to: [{ email: email }],
@@ -102,13 +94,44 @@ export class MailerService {
         price: price.toFixed(2),
         invoice_id,
         date: new Date().toLocaleDateString("fr-FR"),
+        invoice_url: attachment,
       },
-      attachments: [
-        {
-          name: `invoice-${invoice_id}.pdf`,
-          content: Buffer.from(pdf, "binary").toString("base64"),
-        },
-      ],
+    };
+    smtpEmailParams = { ...smtpEmailParams, ...params };
+
+    try {
+      const data = await this.apiInstance.sendTransacEmail(smtpEmailParams);
+      console.log(data);
+      return true;
+    } catch (error) {
+      throw new InternalServerErrorException(error);
+    }
+  }
+  async sendWithdrawInvoice(
+    email: string,
+    name: string,
+    invoice_id: string,
+    invoice_url: string,
+    totalWithdraw: number,
+    feesPercentage: string,
+    fees: number,
+    amount: number
+  ) {
+    let smtpEmailParams = new SibApiV3Sdk.SendSmtpEmail();
+    const params = {
+      to: [{ email: email }],
+      templateId: 6,
+      sender: this.sender,
+      params: {
+        name,
+        invoice_id,
+        invoice_url,
+        date: new Date().toLocaleDateString("fr-FR"),
+        totalWithdraw: totalWithdraw.toFixed(2),
+        feesPercentage,
+        fees: fees.toFixed(2),
+        amount: amount.toFixed(2),
+      },
     };
     smtpEmailParams = { ...smtpEmailParams, ...params };
 

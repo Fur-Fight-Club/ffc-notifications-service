@@ -40,4 +40,25 @@ export class EmailsService {
       attachment
     );
   }
+  sendWithdrawInvoice(
+    email: string,
+    name: string,
+    invoice_id: string,
+    invoice_url: string,
+    totalWithdraw: number,
+    feesPercentage: string,
+    fees: number,
+    amount: number
+  ) {
+    this.mailerService.sendWithdrawInvoice(
+      email,
+      name,
+      invoice_id,
+      invoice_url,
+      totalWithdraw,
+      feesPercentage,
+      fees,
+      amount
+    );
+  }
 }
