@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ffc-notifications-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ffc-notifications
+  template:
+    metadata:
+      labels:
+        app: ffc-notifications
+    spec:
+      containers:
+        - name: ffc-notifications
+          image: mcamus9/ffc-notifications-docker
+          ports:
+            - containerPort: 4003
