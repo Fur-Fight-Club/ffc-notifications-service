@@ -80,3 +80,40 @@ export class UpdateActiveStatusDto extends createZodDto(updateActiveStatus) {
 }
 
 export type UpdateActiveStatusType = z.infer<typeof updateActiveStatus>;
+
+/**
+ * SEND PUSH NOTIFICATION
+ */
+
+export const sendPushNotification = z.object({
+  title: z.string(),
+  body: z.string(),
+  data: z.any(),
+  userId: z.number().int(),
+});
+
+export class SendPushNotificationDto extends createZodDto(
+  sendPushNotification
+) {
+  @ApiProperty({
+    type: "string",
+  })
+  title: string;
+
+  @ApiProperty({
+    type: "string",
+  })
+  body: string;
+
+  @ApiProperty({
+    type: "object",
+  })
+  data: any;
+
+  @ApiProperty({
+    type: "number",
+  })
+  userId: number;
+}
+
+export type SendPushNotificationType = z.infer<typeof sendPushNotification>;
