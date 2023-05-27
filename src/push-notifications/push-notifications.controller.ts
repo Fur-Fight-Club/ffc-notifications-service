@@ -1,8 +1,16 @@
-import { Body, Controller, Delete, Post, UseGuards } from "@nestjs/common";
+import {
+  Body,
+  Controller,
+  Delete,
+  Patch,
+  Post,
+  UseGuards,
+} from "@nestjs/common";
 import { PushNotificationsService } from "./push-notifications.service";
 import { ZodValidationPipe } from "nestjs-zod";
 import {
   DeleteNotificationTokenDto,
+  UpdateActiveStatusDto,
   UpsertNotificationTokenDto,
 } from "./push-notifications.schema";
 import { ServiceGuard } from "src/auth/auth-service.guard";
@@ -35,5 +43,13 @@ export class PushNotificationsController {
   ) {
     const { token } = body;
     return await this.notificationsService.deleteNotificationToken(token);
+  }
+
+  @Patch("active")
+  async updateActiveStatus(
+    @Body(ZodValidationPipe) body: UpdateActiveStatusDto
+  ) {
+    const { token, active } = body;
+    return await this.notificationsService.updateActiveStatus(token, active);
   }
 }

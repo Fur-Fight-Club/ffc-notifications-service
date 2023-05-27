@@ -51,4 +51,15 @@ export class PushNotificationsService {
       },
     });
   }
+
+  async updateActiveStatus(token: string, active: boolean) {
+    return await this.prisma.notificationSettings.update({
+      where: {
+        token,
+      },
+      data: {
+        isActive: active,
+      },
+    });
+  }
 }

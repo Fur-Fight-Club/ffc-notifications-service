@@ -57,3 +57,26 @@ export class DeleteNotificationTokenDto extends createZodDto(
 export type DeleteNotificationTokenType = z.infer<
   typeof deleteNotificationToken
 >;
+
+/**
+ * UPDATE ACTIVE STATUS
+ */
+
+export const updateActiveStatus = z.object({
+  token: z.string(),
+  active: z.boolean(),
+});
+
+export class UpdateActiveStatusDto extends createZodDto(updateActiveStatus) {
+  @ApiProperty({
+    type: "string",
+  })
+  token: string;
+
+  @ApiProperty({
+    type: "boolean",
+  })
+  active: boolean;
+}
+
+export type UpdateActiveStatusType = z.infer<typeof updateActiveStatus>;
