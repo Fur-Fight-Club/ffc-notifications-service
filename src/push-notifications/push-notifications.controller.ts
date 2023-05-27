@@ -19,7 +19,7 @@ import { ApiBearerAuth, ApiTags } from "@nestjs/swagger";
 
 @Controller("push-notifications")
 @ApiTags("Push Notifications Controller")
-//@UseGuards(ServiceGuard)
+@UseGuards(ServiceGuard)
 @ApiBearerAuth()
 export class PushNotificationsController {
   constructor(
