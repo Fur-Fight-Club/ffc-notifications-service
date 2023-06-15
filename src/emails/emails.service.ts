@@ -26,6 +26,14 @@ export class EmailsService {
     return await this.mailerService.sendPasswordReset(email, name, email_token);
   }
 
+  async sendUpdateEmail(
+    email: string,
+    name: string,
+    email_token: string
+  ): Promise<boolean> {
+    return await this.mailerService.sendUpdateEmail(email, name, email_token);
+  }
+
   async sendInvoice(
     email: string,
     name: string,

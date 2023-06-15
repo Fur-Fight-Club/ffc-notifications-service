@@ -77,6 +77,34 @@ export class MailerService {
     }
   }
 
+  async sendUpdateEmail(
+    email: string,
+    name: string,
+    email_token: string
+  ): Promise<boolean> {
+    let smtpEmailParams = new SibApiV3Sdk.SendSmtpEmail();
+    const params = {
+      to: [{ email: email }],
+      templateId: 3,
+      sender: this.sender,
+      params: {
+        name,
+        update_email_url: `${this.config.get<string>(
+          "frontend_url"
+        )}/account/confirm?token=${email_token}`,
+      },
+    };
+    smtpEmailParams = { ...smtpEmailParams, ...params };
+
+    try {
+      const data = await this.apiInstance.sendTransacEmail(smtpEmailParams);
+      console.log(data);
+      return true;
+    } catch (error) {
+      throw new InternalServerErrorException(error);
+    }
+  }
+
   async sendInvoice(
     email: string,
     name: string,
