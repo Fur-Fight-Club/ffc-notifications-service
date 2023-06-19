@@ -15,4 +15,6 @@ export default () => ({
   ffc_notifications_url:
     process.env.FFC_NOTIFICATIONS_URL ?? "http://10.102.1.45:4003",
   ffc_payments_url: process.env.FFC_PAYMENTS_URL ?? "http://10.102.3.226:4004",
+  sib_api_key: process.env.SENDINBLUE_API_KEY,
+  frontend_url: process.env.FRONTEND_URL ?? "https://ffc.mistergooddeal.org",
 });
