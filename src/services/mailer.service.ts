@@ -1,6 +1,5 @@
 import { Injectable, InternalServerErrorException } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
-import axios from "axios";
 import * as SibApiV3Sdk from "sib-api-v3-sdk";
 
 @Injectable()
@@ -41,8 +40,7 @@ export class MailerService {
     smtpEmailParams = { ...smtpEmailParams, ...params };
 
     try {
-      const data = await this.apiInstance.sendTransacEmail(smtpEmailParams);
-      console.log(data);
+      await this.apiInstance.sendTransacEmail(smtpEmailParams);
       return true;
     } catch (error) {
       throw new InternalServerErrorException(error);
@@ -69,8 +67,7 @@ export class MailerService {
     smtpEmailParams = { ...smtpEmailParams, ...params };
 
     try {
-      const data = await this.apiInstance.sendTransacEmail(smtpEmailParams);
-      console.log(data);
+      await this.apiInstance.sendTransacEmail(smtpEmailParams);
       return true;
     } catch (error) {
       throw new InternalServerErrorException(error);
@@ -97,8 +94,7 @@ export class MailerService {
     smtpEmailParams = { ...smtpEmailParams, ...params };
 
     try {
-      const data = await this.apiInstance.sendTransacEmail(smtpEmailParams);
-      console.log(data);
+      await this.apiInstance.sendTransacEmail(smtpEmailParams);
       return true;
     } catch (error) {
       throw new InternalServerErrorException(error);
@@ -128,8 +124,7 @@ export class MailerService {
     smtpEmailParams = { ...smtpEmailParams, ...params };
 
     try {
-      const data = await this.apiInstance.sendTransacEmail(smtpEmailParams);
-      console.log(data);
+      await this.apiInstance.sendTransacEmail(smtpEmailParams);
       return true;
     } catch (error) {
       throw new InternalServerErrorException(error);
@@ -166,8 +161,7 @@ export class MailerService {
     smtpEmailParams = { ...smtpEmailParams, ...params };
 
     try {
-      const data = await this.apiInstance.sendTransacEmail(smtpEmailParams);
-      console.log(data);
+      await this.apiInstance.sendTransacEmail(smtpEmailParams);
       return true;
     } catch (error) {
       throw new InternalServerErrorException(error);

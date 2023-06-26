@@ -31,7 +31,7 @@ export class FirebaseService {
       await firebase.messaging().send(message);
       return true;
     } catch (error) {
-      console.log(error);
+      console.log("ERROR: ", error);
       return false;
     }
   }
