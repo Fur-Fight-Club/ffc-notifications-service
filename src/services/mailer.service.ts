@@ -34,7 +34,7 @@ export class MailerService {
         name,
         confirmation_url: `${this.config.get<string>(
           "frontend_url"
-        )}/account/confirm?token=${email_token}`,
+        )}/confirmAccount?token=${email_token}`,
       },
     };
     smtpEmailParams = { ...smtpEmailParams, ...params };
