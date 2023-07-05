@@ -17,4 +17,22 @@ describe("EmailsService", () => {
   it("should be defined", () => {
     expect(service).toBeDefined();
   });
+
+  describe("sendAccountConfirmation", () => {
+    it("should return the result from mailerService.sendAccountConfirmation", async () => {
+      const email = "test@example.com";
+      const name = "John Doe";
+      const emailToken = "abc123";
+
+      jest.spyOn(service, "sendAccountConfirmation").mockResolvedValue(true);
+
+      const result = await service.sendAccountConfirmation(
+        email,
+        name,
+        emailToken
+      );
+
+      expect(result).toEqual(true);
+    });
+  });
 });
