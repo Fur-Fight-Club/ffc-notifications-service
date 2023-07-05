@@ -1,0 +1,26 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - "*"  # ou la branche de votre choix
+
+jobs:
+  checkout-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: 📥 Checkout project
+      uses: actions/checkout@v2
+
+    - name: 🔨 Build .env from GitHub secrets
+      run: |
+        echo "DATABASE_URL='${{ secrets.DATABASE_URL }}'" >> .env
+        echo "SENDINBLUE_API_KEY='${{ secrets.SENDINBLUE_API_KEY }}'" >> .env
+        echo "FRONTEND_URL='${{ secrets.FRONTEND_URL }}'" >> .env
+
+    - name: 📦 Install dependencies
+      run: npm install
+
+    - name: 🧪 Execute tests
+      run: npm run test
