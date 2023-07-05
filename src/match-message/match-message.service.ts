@@ -29,9 +29,6 @@ export class MatchMessageService {
           },
         },
       });
-
-      this.matchMessageGateway.sendMessageToClient(message);
-
       return message;
     } catch (error) {
       handleMatchMessageError(error);
