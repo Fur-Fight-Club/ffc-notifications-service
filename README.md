@@ -1,4 +1,4 @@
-# Fury Fight Club — Auth Service
+# Fury Fight Club — Notifications Service
 `ffc-notifications-service` is the service that handles every operations on the mailer and notifications of the Fury Fight Club project. 
 
 It runs on port `4004` and is accessible at the following url: [http://localhost:4004](http://localhost:4004)
